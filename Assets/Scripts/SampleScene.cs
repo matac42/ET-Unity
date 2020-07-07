@@ -26,6 +26,7 @@ public class SampleScene : MonoBehaviourPunCallbacks
 
         player.GetComponent<CarUserControl>().enabled = true;
         player.GetComponent<CarController>().enabled = true;
+        player.GetComponent<CarAudio>().enabled = true;
 
 
     }
