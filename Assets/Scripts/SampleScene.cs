@@ -25,6 +25,8 @@ public class SampleScene : MonoBehaviourPunCallbacks
         GameObject player = PhotonNetwork.Instantiate("Car", v, Quaternion.identity);
 
         player.GetComponent<CarUserControl>().enabled = true;
+        player.GetComponent<CarController>().enabled = true;
+
 
     }
 }
