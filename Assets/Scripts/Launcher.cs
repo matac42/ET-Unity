@@ -17,6 +17,15 @@ namespace Com.MyCompany.MyGame
 
         #endregion
 
+        #region Public Fields
+        [Tooltip("The Ui Panel to let the user enter name, connect and play")]
+        [SerializeField]
+        private GameObject controlPanel;
+        [Tooltip("The UI Label to inform the user that the connection is in progress")]
+        [SerializeField]
+        private GameObject progressLabel;
+        #endregion
+
 
         #region Private Fields
 
@@ -49,7 +58,8 @@ namespace Com.MyCompany.MyGame
         /// </summary>
         void Start()
         {
-            Connect();
+            progressLabel.SetActive(false);
+            controlPanel.SetActive(true);
         }
 
 
@@ -78,6 +88,8 @@ namespace Com.MyCompany.MyGame
                 PhotonNetwork.GameVersion = gameVersion;
                 PhotonNetwork.ConnectUsingSettings();
             }
+            progressLabel.SetActive(true);
+            controlPanel.SetActive(false);
         }
         #endregion
         #region MonoBehaviourPunCallbacks Callbacks
@@ -95,6 +107,8 @@ namespace Com.MyCompany.MyGame
 
         public override void OnDisconnected(DisconnectCause cause)
         {
+            progressLabel.SetActive(false);
+            controlPanel.SetActive(true);
             Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
         }
 
