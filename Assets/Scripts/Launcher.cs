@@ -35,6 +35,13 @@ namespace Com.MyCompany.MyGame
         /// </summary>
         string gameVersion = "1";
 
+        /// <summary>
+        /// Keep track of the current process. Since connection is asynchronous and is based on several callbacks from Photon,
+        /// we need to keep track of this to properly adjust the behavior when we receive call back by Photon.
+        /// Typically this is used for the OnConnectedToMaster() callback.
+        /// </summary>
+        bool isConnecting;
+
 
         #endregion
 
@@ -76,6 +83,8 @@ namespace Com.MyCompany.MyGame
         /// </summary>
         public void Connect()
         {
+            progressLabel.SetActive(true);
+            controlPanel.SetActive(false);
             // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
             if (PhotonNetwork.IsConnected)
             {
@@ -86,10 +95,9 @@ namespace Com.MyCompany.MyGame
             {
                 // #Critical, we must first and foremost connect to Photon Online Server.
                 PhotonNetwork.GameVersion = gameVersion;
-                PhotonNetwork.ConnectUsingSettings();
+                // keep track of the will to join a room, because when we come back from the game we will get a callback that we are connected, so we need to know what to do then
+                isConnecting = PhotonNetwork.ConnectUsingSettings();
             }
-            progressLabel.SetActive(true);
-            controlPanel.SetActive(false);
         }
         #endregion
         #region MonoBehaviourPunCallbacks Callbacks
@@ -100,7 +108,11 @@ namespace Com.MyCompany.MyGame
         public override void OnConnectedToMaster()
         {
             // #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnJoinRandomFailed()
-            PhotonNetwork.JoinRandomRoom();
+            if (isConnecting)
+            {
+                PhotonNetwork.JoinRandomRoom();
+                isConnecting = false;
+            }
             Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
         }
 
@@ -126,6 +138,16 @@ namespace Com.MyCompany.MyGame
 
         public override void OnJoinedRoom()
         {
+            // #Critical: We only load if we are the first player, else we rely on `PhotonNetwork.AutomaticallySyncScene` to sync our instance scene.
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+        {
+            Debug.Log("We load the 'Game' ");
+
+
+            // #Critical
+            // Load the Room Level.
+            PhotonNetwork.LoadLevel("Game");
+        }
             Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
         } 
 
