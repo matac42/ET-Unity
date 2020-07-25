@@ -20,7 +20,7 @@ public class SampleScene : MonoBehaviourPunCallbacks
     // マッチングが成功した時に呼ばれるコールバック
     public override void OnJoinedRoom() {
         // マッチング後、ランダムな位置に自分自身のネットワークオブジェクトを生成する
-        var v = new Vector3(Random.Range(50f, 150f), 20, Random.Range(50f, 150f));
+        var v = new Vector3(575, 15, 2000);
         // var v = new Vector3(50,0,50);
         GameObject player = PhotonNetwork.Instantiate("Car", v, Quaternion.identity);
 
