@@ -69,3 +69,15 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Standard assets
+/Assets/Standard Assets/
+/Assets/Standard Assets.meta
+
+# Photon assets
+/Assets/Photon/
+/Assets/Photon.meta
+
+#LowpolyStreetPack
+/Assets/LowpolyStreetPack
+/Assets/LowpolyStreetPack.meta
