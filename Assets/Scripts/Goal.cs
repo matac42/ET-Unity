@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class FallJudge : MonoBehaviour
+public class Goal : MonoBehaviour
 {
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerExit(Collider other)
     {
-        // Debug.Log("Clash3");
-     
-        if(collision.gameObject.CompareTag("Ground")){
-     Debug.Log("Clash");
-            SceneManager.LoadScene("Ending");
+        
+        
+        if(other.gameObject.CompareTag("Goal")){
+            Invoke("finish", 1f);
+            Debug.Log("goal");
           }
-       
         
     }
 
+    void finish(){
+        SceneManager.LoadScene("Ending");
+    }
 // Start is called before the first frame update
     void Start()
     {
