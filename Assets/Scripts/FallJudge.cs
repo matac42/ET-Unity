@@ -11,7 +11,9 @@ public class FallJudge : MonoBehaviour
      
         if(collision.gameObject.CompareTag("Ground")){
      Debug.Log("Clash");
-            SceneManager.LoadScene("Ending");
+            SceneManager.LoadScene("Gameover");
+            //音楽つける、リトライボタンを追加する。->ゲーム(スタート)画面に飛ぶ
+            
           }
        
         

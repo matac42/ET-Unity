@@ -85,3 +85,8 @@ crashlytics-build.properties
 #Wispy sky
 /Assets/Wispy Sky/
 /Assets/Wispy Sky.meta
+
+#SampleScenes
+/Assets/SampleScenes/
+/Assets/SampleScenes.meta
+
