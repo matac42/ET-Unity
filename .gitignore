@@ -81,3 +81,12 @@ crashlytics-build.properties
 #LowpolyStreetPack
 /Assets/LowpolyStreetPack
 /Assets/LowpolyStreetPack.meta
+
+#Wispy sky
+/Assets/Wispy Sky/
+/Assets/Wispy Sky.meta
+
+#SampleScenes
+/Assets/SampleScenes/
+/Assets/SampleScenes.meta
+
