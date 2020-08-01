@@ -10,14 +10,22 @@ public class TimeCounter : MonoBehaviour
     private float minute = 0.0f;
     private float milis = 0.0f;
 
+    private bool flag = true;
+
 
     //時間を表示するText型の変数
     public Text timeText;
 
+    
+   
+
+    
     // Update is called once per frame
     void Update()
     {
-        //時間をカウントする
+        if (!flag) return;
+        
+        // //時間をカウントする
         second += Time.deltaTime;
         milis = second*1000%1000;
         if(second >= 60f)
@@ -31,5 +39,17 @@ public class TimeCounter : MonoBehaviour
 
 		timeText.text = minute.ToString("00") + ":" + ((int) second).ToString ("00") + ":" + ((int) milis).ToString ("000");
     
+    }
+    void OnTriggerExit(Collider other)
+    {
+        
+        
+        if(other.gameObject.CompareTag("Goal")){
+            flag = false;
+            Debug.Log("判定");
+
+        }
+
+        
     }
 }
