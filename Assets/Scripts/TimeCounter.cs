@@ -8,7 +8,8 @@ public class TimeCounter : MonoBehaviour
     //カウントアップ
     private float second = 0.0f;
     private float minute = 0.0f;
-    private float oldSeconds = 0.0f;
+    private float milis = 0.0f;
+
 
     //時間を表示するText型の変数
     public Text timeText;
@@ -18,7 +19,7 @@ public class TimeCounter : MonoBehaviour
     {
         //時間をカウントする
         second += Time.deltaTime;
-        Debug.Log(second);
+        milis = second*1000%1000;
         if(second >= 60f)
         {
             minute ++;
@@ -28,10 +29,7 @@ public class TimeCounter : MonoBehaviour
         //時間を表示する
         // timeText.text = second.ToString("f2");
 
-        if((int)second != (int)oldSeconds) {
-			timeText.text = minute.ToString("00") + ":" + ((int) second).ToString ("f2");
-		}
-		oldSeconds = second;
+		timeText.text = minute.ToString("00") + ":" + ((int) second).ToString ("00") + ":" + ((int) milis).ToString ("000");
     
     }
 }
