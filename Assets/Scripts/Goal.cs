@@ -18,7 +18,7 @@ public class Goal : MonoBehaviour
             Invoke("finish", 3.0f);
             Debug.Log("goal");
 
-          }
+        }
         
     }
 

@@ -50,6 +50,9 @@ public class TimeCounter : MonoBehaviour
 
         }
 
+        PlayerPrefs.SetFloat("SCORE", second);
+        PlayerPrefs.Save();
+
         
     }
 }
