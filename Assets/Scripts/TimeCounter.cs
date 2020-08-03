@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public class ResultTime
+{
+    public float second;
+    public float minute;
+    public float milis;
+}
+
 public class TimeCounter : MonoBehaviour
 {
     //カウントアップ
@@ -16,9 +23,14 @@ public class TimeCounter : MonoBehaviour
     //時間を表示するText型の変数
     public Text timeText;
 
+    public ResultTime time = new ResultTime{};
+
     
    
 
+    void Start()
+    {
+    }
     
     // Update is called once per frame
     void Update()
@@ -49,6 +61,13 @@ public class TimeCounter : MonoBehaviour
             Debug.Log("判定");
 
         }
+        time.second = second;
+        time.minute = minute;
+        time.milis = milis;
+
+        string json = JsonUtility.ToJson(time);
+        PlayerPrefs.SetString("SCORE", json);
+        PlayerPrefs.Save();
 
         
     }
